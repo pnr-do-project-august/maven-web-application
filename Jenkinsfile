@@ -1,6 +1,13 @@
 node{
 	
 	def mavenHome = tool name: "maven 3.8.4"
+	echo "GitHub BranhName ${env.BRANCH_NAME}"
+  echo "Jenkins Job Number ${env.BUILD_NUMBER}"
+  echo "Jenkins Node Name ${env.NODE_NAME}"
+  
+  echo "Jenkins Home ${env.JENKINS_HOME}"
+  echo "Jenkins URL ${env.JENKINS_URL}"
+  echo "JOB Name ${env.JOB_NAME}"
 	stage('CheckOutCode')
 	{
 		git branch: 'development', credentialsId: '87f4b58b-321e-40d7-a4e2-c43b1eb305d5', url: 'https://github.com/pnr-do-project-august/maven-web-application.git'
