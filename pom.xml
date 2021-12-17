@@ -98,14 +98,14 @@
 	
 	    <repository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://54.252.173.144:9980/mithuntechnologies/repository/wallmart-release/</url>
+	      <name>Releases Nexus Repository</name>
+	      <url>http://65.2.73.182:9908/nagesh447/repository/irctc-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://54.252.173.144:9980/mithuntechnologies/repository/wallmart-snapshot/</url>
+	      <name>Snapshot Nexus Repository </name>
+	      <url>http://65.2.73.182:9908/nagesh447/repository/irctc-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
