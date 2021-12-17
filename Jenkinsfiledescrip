@@ -1,0 +1,68 @@
+pipeline{
+agent any
+tools{
+	maven "maven 3.8.4"
+}
+options{
+    buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
+  timestamps()
+}
+triggers {
+  pollSCM '* * * * *'
+  githubPush()
+}
+stages{
+    
+	stage('CheckOutCode'){
+    	steps{
+    		git branch: 'development', credentialsId: '87f4b58b-321e-40d7-a4e2-c43b1eb305d5', url: 'https://github.com/pnr-do-project-august/maven-web-application.git'
+    	}
+	}
+	stage('Build'){
+    	steps{
+    		sh "mvn clean package"
+    	}
+	}
+	stage('SonarQubeReport'){
+	    steps{
+	     
+	            sh "mvn clean sonar:sonar"
+	    }
+	
+    }
+	stage('UploadArtifactIntoNexus'){
+	    steps{
+	        sh "mvn clean deploy"
+	    }
+	}
+	stage('DeployAppIntoTomcatServer'){
+	    steps{
+	        sshagent(['93ec5659-405d-4a36-ab73-78b840699073']) {
+			sh "scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.0.31.52:/opt/tomcat9/webapps/"
+	    }
+	  }
+	}
+	
+}
+
+    post{
+        always{
+            emailext body: '''Cograts to said . The build is over
+        Regards,
+        Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
+        }
+        success{
+            emailext body: '''Cograts to said . The build is success
+        Regards,
+        Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
+            
+        }
+        failure{
+        emailext body: '''Cograts to said . The build is failed
+        Regards,
+        Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
+            
+        }
+    }
+    
+}
