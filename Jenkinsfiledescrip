@@ -7,10 +7,10 @@ options{
     buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')
   timestamps()
 }
-triggers {
-  pollSCM '* * * * *'
-  githubPush()
-}
+//triggers {
+ // pollSCM '* * * * *'
+//  githubPush()
+//}
 stages{
     
 	stage('CheckOutCode'){
@@ -38,12 +38,12 @@ stages{
 	stage('DeployAppIntoTomcatServer'){
 	    steps{
 	        sshagent(['93ec5659-405d-4a36-ab73-78b840699073']) {
-			sh "scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@65.0.31.52:/opt/tomcat9/webapps/"
+			sh "scp -o  StrictHostKeyChecking=no target/maven-web-application.war ec2-user@52.66.70.228:/opt/tomcat9/webapps/"
 	    }
 	  }
 	}
 	
-}
+}/*
 
     post{
         always{
@@ -63,6 +63,6 @@ stages{
         Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
             
         }
-    }
+    }*/
     
 }
