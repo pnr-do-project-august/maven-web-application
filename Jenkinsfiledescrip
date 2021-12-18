@@ -15,7 +15,7 @@ stages{
     
 	stage('CheckOutCode'){
     	steps{
-    		git branch: 'dev', credentialsId: '87f4b58b-321e-40d7-a4e2-c43b1eb305d5', url: 'https://github.com/pnr-do-project-august/maven-web-application.git'
+    		git branch: 'uat', credentialsId: '87f4b58b-321e-40d7-a4e2-c43b1eb305d5', url: 'https://github.com/pnr-do-project-august/maven-web-application.git'
     	}
 	}
 	stage('Build'){
