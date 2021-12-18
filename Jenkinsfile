@@ -1,4 +1,4 @@
-node{
+node('Irctc-qa'){
 	
 	def mavenHome = tool name: "maven 3.8.4"
 	echo "GitHub BranhName ${env.BRANCH_NAME}"
@@ -15,7 +15,7 @@ node{
 	stage('Build')
 	{
 		sh "${mavenHome}/bin/mvn clean package"
-	}
+	}/*
 	stage('SonarQubereport')
 	{
 		sh "${mavenHome}/bin/mvn clean sonar:sonar"
@@ -36,5 +36,5 @@ node{
 
         Regards,
         Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
-	}
+	}*/
 }
