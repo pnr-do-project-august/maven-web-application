@@ -43,7 +43,7 @@ stages{
 	  }
 	}
 	
-}
+}/*
 
     post{
         always{
@@ -63,6 +63,6 @@ stages{
         Pulikanti Nageswarreddy''', subject: 'Build is over', to: 'nageswarreddy447@gmail.com'
             
         }
-    }
+    }*/
     
 }
